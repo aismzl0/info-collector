@@ -1,6 +1,11 @@
 # import beautifulsoup,which turns an HTML string into a serachable object
 from bs4 import BeautifulSoup
+# urljoin combines a base URL and a relative URL into one complete URL
+from urllib.parse import urljoin
 
+
+# The site's base address, used to complete relative links like "item?id=123"
+BASE_URL = "https://news.ycombinator.com/"
 
 # Take an html string,return a list of dictionaries(one dictionary per story)
 def parse_stories(html:str) -> list[dict]:
@@ -9,18 +14,30 @@ def parse_stories(html:str) -> list[dict]:
     soup = BeautifulSoup(html,"html.parser")
     #Create an empty list to collect the results
     stories = []
-    # select() finds all <a> tags directly inside <span class="titleline">.
-    # "span.titleline > a" is a CSS selector, the same syntax used in web styling.
-    for link in soup.select("span.titleline > a"):
-        # Add one dictionary to the list for each link found
+
+    # Each story is a <tr> tag with class "athing"; loop over all of them
+    for row in soup.select("tr.athing"):
+        # Read this row's "id" attribute, which is the story's unique number
+        story_id = row.get("id")
+        # Inside this row, find the first title link (select_one returns one tag or None)
+        link = row.select_one("span.titleline>a")
+        # If the row has no id or no link, skip it and move to the next row
+        if story_id is None or link is None:
+            continue
+        # Get the raw href value, which may be relative like "item?id=123"
+        href = link.get("href")
+        # Add one dictionary to the list for this story
         stories.append(
             {
-                # get_text() returns the visible text between <a> and </a>
-                # get("href") returns the value of the href attribute (the URL)
+                # The unique id, stored as a string
+                "id":story_id,
+                # The visible title text
                 "title":link.get_text(),
-                "url":link.get("href"),
+                # urljoin leaves full URLs unchanged and completes relative ones
+                "url": urljoin(BASE_URL,href),
             }
         )
+
     # Give the finished list back to whoever called this function
     return stories
 
