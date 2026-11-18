@@ -2,6 +2,10 @@
 from bs4 import BeautifulSoup
 # urljoin combines a base URL and a relative URL into one complete URL
 from urllib.parse import urljoin
+# logging lets us record skipped rows instead of silently ignoring them
+import logging
+# A logger named after this module
+logger = logging.getLogger(__name__)
 
 
 # The site's base address, used to complete relative links like "item?id=123"
@@ -23,6 +27,8 @@ def parse_stories(html:str) -> list[dict]:
         link = row.select_one("span.titleline>a")
         # If the row has no id or no link, skip it and move to the next row
         if story_id is None or link is None:
+            # %s placeholders are filled by the extra arguments (lazy formatting)
+            logger.warning("Skipped a row: id=%s, has_link=%s",story_id,link is not None)
             continue
         # Get the raw href value, which may be relative like "item?id=123"
         href = link.get("href")
