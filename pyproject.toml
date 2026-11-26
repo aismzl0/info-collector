@@ -1,0 +1,22 @@
+# How to build this project: use setuptools (version 64 or newer)
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+# Basic information about the project
+[project]
+# The project's name
+name = "info-collector"
+# Version number (major.minor.patch)
+version = "0.1.0"
+# We use syntax like "str | None", which needs Python 3.10 or newer
+requires-python = ">=3.10"
+# Libraries this project needs; pip installs them automatically
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+]
+
+# Tell setuptools our packages live inside the "src" folder
+[tool.setuptools.packages.find]
+where = ["src"]

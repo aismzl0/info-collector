@@ -49,7 +49,7 @@ def fetch_page(url:str) -> str | None:
 if __name__ =="__main__":
     # Import Path to save the file, and our logging setup
     from pathlib import Path
-    from log_config import setup_logging
+    from collector.log_config import setup_logging
 
     # Start logging before doing anything else
     setup_logging()
@@ -60,7 +60,7 @@ if __name__ =="__main__":
     if html is None:
         # Stop here;the reason is already in the log
         logger.error("Nothing saved because the download failed")
-    else:
+    else:  
         # Create a path object pointing to where we want to save the file
         out = Path("tests/fixtures/hn_sample.html")
         # Create the parent folder if missing
@@ -69,3 +69,4 @@ if __name__ =="__main__":
         out.write_text(html, encoding="utf-8")
         # Record success
         logger.info("Saved to %s", out)
+

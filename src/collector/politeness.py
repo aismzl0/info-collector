@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 # RobotFileParser is Python's built-in reader for robots.txt rules
 from urllib.robotparser import RobotFileParser
 # Reuse our own downloader and identity string from fetcher.py
-from fetcher import USER_AGENT, fetch_page
+from collector.fetcher import USER_AGENT, fetch_page
 
 # A logger named after this module
 logger = logging.getLogger(__name__)
@@ -106,7 +106,7 @@ class RateLimiter:
 # Runs only when this file is executed directly: an offline demo (no network)
 if __name__ == "__main__":
     # Reuse the shared logging setup
-    from log_config import setup_logging
+    from collector.log_config import setup_logging
 
     # Start logging first
     setup_logging()
