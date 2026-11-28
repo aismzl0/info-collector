@@ -49,22 +49,21 @@ python -m collector.cli --help
 
 ## Sample output
 
-<<<2026-11-28 05:08:26,698 INFO collector.fetcher: Fetched https://news.ycombinator.com/robots.txt(243 characters)
+````2026-11-28 05:08:26,698 INFO collector.fetcher: Fetched https://news.ycombinator.com/robots.txt(243 characters)
 2026-11-28 05:08:26,701 INFO collector.pipeline: Using a delay of 30.0 seconds between requests
 2026-11-28 05:08:26,704 INFO collector.politeness: Rate limit: sleeping 28.5 seconds
 2026-11-28 05:08:57,038 INFO collector.fetcher: Fetched https://news.ycombinator.com/(32730 characters)
 2026-11-28 05:08:57,194 INFO collector.politeness: Rate limit: sleeping 28.0 seconds
 2026-11-28 05:09:26,557 INFO collector.fetcher: Fetched https://news.ycombinator.com/?p=2(32834 characters)
-2026-11-28 05:09:26,600 INFO collector.pipeline: Done. 59 new stories saved> > >
+2026-11-28 05:09:26,600 INFO collector.pipeline: Done. 59 new stories saved```
 
 ## Running the tests
 
 ```powershell
 python -m pytest -v
-```
+````
 
-<<<
-platform win32 -- Python 3.11.6, pytest-9.2.0, pluggy-1.7.0 -- D:\imm\new_pro\info-collector\.venv\Scripts\python.exe
+````platform win32 -- Python 3.11.6, pytest-9.2.0, pluggy-1.7.0 -- D:\imm\new_pro\info-collector.venv\Scripts\python.exe
 cachedir: .pytest_cache
 rootdir: D:\imm\new_pro\info-collector
 configfile: pyproject.toml
@@ -85,25 +84,25 @@ tests/test_storage.py::test_duplicate_ids_are_skipped PASSED [ 85%]
 tests/test_storage.py::test_existing_row_is_not_overwritten PASSED [ 92%]
 tests/test_storage.py::test_init_db_is_safe_to_call_twice PASSED [100%]
 
-============================ 14 passed in 1.13s ============================
-
-> > >
+============================ 14 passed in 1.13s ============================```
 
 ## Project structure
 
-```
+````
+
 info-collector/
 ├── src/collector/
-│   ├── fetcher.py      # download a page (User-Agent, timeout, error handling)
-│   ├── hn_parser.py    # HTML -> list of {id, title, url}
-│   ├── storage.py      # SQLite storage with id-based deduplication
-│   ├── politeness.py   # robots.txt rules and the rate limiter
-│   ├── pipeline.py     # robots -> rate limit -> download -> parse -> store
-│   ├── cli.py          # command-line interface (argparse)
-│   └── log_config.py   # logging to screen and file
-├── tests/              # pytest tests and a saved sample page
-├── pyproject.toml      # project metadata and dependencies
-└── requirements.txt    # pinned versions used during development
+│ ├── fetcher.py # download a page (User-Agent, timeout, error handling)
+│ ├── hn_parser.py # HTML -> list of {id, title, url}
+│ ├── storage.py # SQLite storage with id-based deduplication
+│ ├── politeness.py # robots.txt rules and the rate limiter
+│ ├── pipeline.py # robots -> rate limit -> download -> parse -> store
+│ ├── cli.py # command-line interface (argparse)
+│ └── log_config.py # logging to screen and file
+├── tests/ # pytest tests and a saved sample page
+├── pyproject.toml # project metadata and dependencies
+└── requirements.txt # pinned versions used during development
+
 ```
 
 ## Challenges and solutions
@@ -120,3 +119,4 @@ info-collector/
 ## Scope and compliance
 
 Only public pages that `robots.txt` allows are fetched. Pages that require login are not collected.
+```
