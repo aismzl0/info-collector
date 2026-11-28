@@ -28,7 +28,7 @@ def build_page_url(page: int) -> str:
     if page == 1:
         return BASE_URL
     # Later pages use ?p=N (check the "More" link in the sample HTML to confirm)
-    return f"{BASE_URL}news?p={page}"
+    return f"{BASE_URL}?p={page}"
 
 
 # Parse one local HTML file and store the result. No network is used.
