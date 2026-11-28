@@ -49,16 +49,13 @@ python -m collector.cli --help
 
 ## Sample output
 
-<<<
-2026-11-28 05:08:26,698 INFO collector.fetcher: Fetched https://news.ycombinator.com/robots.txt(243 characters)
+<<<2026-11-28 05:08:26,698 INFO collector.fetcher: Fetched https://news.ycombinator.com/robots.txt(243 characters)
 2026-11-28 05:08:26,701 INFO collector.pipeline: Using a delay of 30.0 seconds between requests
 2026-11-28 05:08:26,704 INFO collector.politeness: Rate limit: sleeping 28.5 seconds
 2026-11-28 05:08:57,038 INFO collector.fetcher: Fetched https://news.ycombinator.com/(32730 characters)
 2026-11-28 05:08:57,194 INFO collector.politeness: Rate limit: sleeping 28.0 seconds
 2026-11-28 05:09:26,557 INFO collector.fetcher: Fetched https://news.ycombinator.com/?p=2(32834 characters)
-2026-11-28 05:09:26,600 INFO collector.pipeline: Done. 59 new stories saved
-
-> > >
+2026-11-28 05:09:26,600 INFO collector.pipeline: Done. 59 new stories saved> > >
 
 ## Running the tests
 

@@ -40,7 +40,7 @@ def fetch_page(url:str) -> str | None:
         logger.error("Request failed for %s: %s",url,e)
         return None
     # Only reached when no exception happened
-    logger.info("Fetched %s(%s characters)",url, len(response.text))
+    logger.info("Fetched %s (%s characters)",url, len(response.text))
     # Return the page content
     return response.text
 
